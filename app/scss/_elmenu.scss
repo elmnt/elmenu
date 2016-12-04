@@ -30,10 +30,6 @@ $site-color-9: #999;
 $site-color-c: #ccc;
 $site-color-f: #f6f6f6;
 
-//$brand-color-1: #00461C;
-//$brand-color-2: #5AAD41;
-//$brand-color-3: #D4E5A0;
-
 $brand-color-1: $site-color-3;
 $brand-color-2: $site-color-6;
 $brand-color-3: $site-color-9;
@@ -72,8 +68,6 @@ $elmenu-main-font-weight: $elmenu-global-font-weight;
 $elmenu-mobile-main-font-size:   $elmenu-global-font-size;
 $elmenu-mobile-main-line-height: $elmenu-global-line-height;
 $elmenu-mobile-main-font-weight: $elmenu-global-font-weight;
-
-// desktop nav styles
 
 // navutility
 $elmenu-navutility-background:                  $brand-color-1;
@@ -204,9 +198,11 @@ $elmenu-mobile-subnav-toggle-background-color: orange;
    background: $elmenu-background-color;
 }
 
-// Constrain the menu to the screen width on smaller screens
 body.show-nav #elmobile {
+   // Constrain the menu to the screen width on smaller screens
    max-width: 100%;
+   // And add a left border
+   border-left: 1px solid white;
 }
 
 
