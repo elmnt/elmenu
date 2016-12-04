@@ -1,0 +1,881 @@
+/**
+ * 
+ * elmenu | A lightweight jQuery menu system
+ * 
+ */
+
+/*
+This was built upon a really great tutorial by Nicholas Cerminara on scotch.io
+
+Credit
+https://scotch.io/tutorials/off-canvas-menus-with-css3-transitions-and-transforms
+
+I built upon it to add:
+
+1. Desktop display of a fairly robust header nav with different link sections and sub-menus
+2. Automatic injection of all those nav (and sub-nav) elements into a mobile nav holder
+3. Accordion-style drop-down in the mobile nav, with the option to click both the parent link 
+   (to go to a category page, for instance), and a toggle button to activate that sub-menu (to access the sub-menu links).
+*/
+
+
+/**
+ * Variables:
+ * Leave these in place, to keep this partial 100% portable, 
+ * or dump them into your global variables to make this part of your framework 
+ */
+$site-color-3: #333;
+$site-color-6: #666;
+$site-color-9: #999;
+$site-color-c: #ccc;
+$site-color-f: #f6f6f6;
+
+//$brand-color-1: #00461C;
+//$brand-color-2: #5AAD41;
+//$brand-color-3: #D4E5A0;
+
+$brand-color-1: $site-color-3;
+$brand-color-2: $site-color-6;
+$brand-color-3: $site-color-9;
+
+$highlight-color: orange;
+
+$elmenu-mobile-breakpoint: 768px;
+$elmenu-base-color:        $site-color-3;
+
+// inject these globals into the variables below
+$elmenu-global-font-size:   .85rem;
+$elmenu-global-line-height: 1em;
+$elmenu-global-font-weight: normal;
+
+// or set the individual values
+$elmenu-utility-font-size:   $elmenu-global-font-size;
+$elmenu-utility-line-height: $elmenu-global-line-height;
+$elmenu-utility-font-weight: $elmenu-global-font-weight;
+
+$elmenu-mobile-utility-font-size:   $elmenu-global-font-size;
+$elmenu-mobile-utility-line-height: $elmenu-global-line-height;
+$elmenu-mobile-utility-font-weight: $elmenu-global-font-weight;
+
+$elmenu-social-font-size:   $elmenu-global-font-size;
+$elmenu-social-line-height: $elmenu-global-line-height;
+$elmenu-social-font-weight: $elmenu-global-font-weight;
+
+$elmenu-mobile-social-font-size:   $elmenu-global-font-size;
+$elmenu-mobile-social-line-height: $elmenu-global-line-height;
+$elmenu-mobile-social-font-weight: $elmenu-global-font-weight;
+
+$elmenu-main-font-size:   $elmenu-global-font-size;
+$elmenu-main-line-height: $elmenu-global-line-height;
+$elmenu-main-font-weight: $elmenu-global-font-weight;
+
+$elmenu-mobile-main-font-size:   $elmenu-global-font-size;
+$elmenu-mobile-main-line-height: $elmenu-global-line-height;
+$elmenu-mobile-main-font-weight: $elmenu-global-font-weight;
+
+// desktop nav styles
+
+// navutility
+$elmenu-navutility-background:                  $brand-color-1;
+$elmenu-navutility-link-padding:                1.25rem 1rem;
+$elmenu-navutility-link-color:                  $brand-color-3;
+$elmenu-navutility-link-hover-color:            white;
+$elmenu-navutility-link-background-color:       $brand-color-1;
+$elmenu-navutility-link-hover-background-color: $brand-color-1;
+$elmenu-navutility-link-text-transform:         none;
+
+// navmain
+$elmenu-navmain-background:                  $brand-color-2;
+$elmenu-navmain-link-padding:                1.25rem 1rem;
+$elmenu-navmain-link-color:                  white;
+$elmenu-navmain-link-hover-color:            white;
+$elmenu-navmain-link-background-color:       $brand-color-2;
+$elmenu-navmain-link-hover-background-color: $brand-color-2;
+$elmenu-navmain-link-text-transform:         none;
+
+// navmain subs
+$elmenu-navmain-sub-background:       $brand-color-2;
+$elmenu-navmain-sub-hover-background: lighten($brand-color-2, 8%);
+
+$elmenu-navmain-subsub-background:       lighten($brand-color-2, 8%);
+$elmenu-navmain-subsub-hover-background: lighten($brand-color-2, 16%);
+
+// mobile nav styles
+$elmenu-transition-property: all;
+$elmenu-transition-duration: .3s;
+$elmenu-transition-timing:   ease-out;
+
+$elmenu-toggle-holder-background-color:        $brand-color-1;
+$elmenu-mobile-toggle-holder-background-color: $brand-color-1;
+$elmenu-toggle-button-padding:                 1rem;
+
+$elmenu-background-color: $brand-color-1;
+
+// This should always be 0, unless changing it for visual testing during dev
+$canvas-start-position: 0;
+
+$elmenu-elmobile-width:   400px;
+$elmenu-links-padding:    1.25rem 1rem;
+$elmenu-sublinks-padding: 1.25rem 1rem 1.25rem 2rem;
+
+$elmenu-mobile-subnav-toggle-background-color: orange;
+
+
+/**
+ * This .list-reset class is in my demo Sass partials, 
+ * but added here, so this partial can be 100% portable.
+ */
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+/**
+ * Font sizes for both desktop & mobile menus
+ */
+.nav--utility .elm__item {
+   font-size: $elmenu-utility-font-size;
+   line-height: $elmenu-utility-line-height;
+   font-weight: $elmenu-utility-font-weight;
+}
+
+.nav--utility .m-elm__item {
+   font-size: $elmenu-mobile-utility-font-size;
+   line-height: $elmenu-mobile-utility-line-height;
+   font-weight: $elmenu-mobile-utility-font-weight;
+}
+
+.nav--social .elm__item {
+   font-size: $elmenu-social-font-size;
+   line-height: $elmenu-social-line-height;
+   font-weight: $elmenu-social-font-weight;
+}
+
+.nav--social .m-elm__item {
+   font-size: $elmenu-mobile-social-font-size;
+   line-height: $elmenu-mobile-social-line-height;
+   font-weight: $elmenu-mobile-social-font-weight;
+}
+
+.nav--main .elm__item,
+.nav--main .elm__item--sub,
+.nav--main .elm__item--subsub {
+   font-size: $elmenu-main-font-size;
+   line-height: $elmenu-main-line-height;
+   font-weight: $elmenu-main-font-weight;
+}
+
+.nav--main .m-elm__item,
+.nav--main .m-elm__item--sub,
+.nav--main .m-elm__item--subsub {
+   font-size: $elmenu-mobile-main-font-size;
+   line-height: $elmenu-mobile-main-line-height;
+   font-weight: $elmenu-mobile-main-font-weight;
+}
+
+
+/**
+ * Page structure
+ */
+#page {
+   position: relative; //necessary?
+   overflow: hidden;
+   width: 100%;
+}
+
+#canvas {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   -webkit-transform: translateX($canvas-start-position);
+   transform: translateX($canvas-start-position);
+   -webkit-transition: -webkit-transform .33s cubic-bezier(.694, .0482, .335, 1);
+   transition: -webkit-transform .33s cubic-bezier(.694, .0482, .335, 1);
+}
+
+#elmobile {
+   position: absolute;
+   top: 0;
+   right: (-1 * $elmenu-elmobile-width);
+   width: $elmenu-elmobile-width;
+   height: 100%;
+   background: $elmenu-background-color;
+}
+
+// Constrain the menu to the screen width on smaller screens
+body.show-nav #elmobile {
+   max-width: 100%;
+}
+
+
+/**
+ * Some header container styles
+ * They do not affect the menu system, they just allow us to 
+ * position & style those individual elements.
+ */
+.navholder--utility {
+   display: none;
+   @media only screen and (min-width: $elmenu-mobile-breakpoint){
+      display: block;
+      background-color: $elmenu-navutility-background;
+      nav {
+         float: left;
+         display: inline-block;
+      }
+      .nav--social {
+         float: right;
+         display: inline-block;
+      }
+   }
+
+}
+
+.navholder--main {
+   display: none;
+   @media only screen and (min-width: $elmenu-mobile-breakpoint){
+      display: block;
+      background-color: $elmenu-navmain-background;
+   }
+
+}
+
+
+/*
+Colors unique to each individual nav element (the ULs)
+Applied for both desktop and mobile
+*/
+.nav--utility {
+
+   .elm__link {
+      text-transform: $elmenu-navutility-link-text-transform;
+      color: $elmenu-navutility-link-color;
+      &:visited {
+         color: $elmenu-navutility-link-color;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+         color: $elmenu-navutility-link-hover-color;
+      }
+   }
+
+}
+
+.nav--social {
+
+   .elm__link {
+      text-transform: $elmenu-navutility-link-text-transform;
+      color: $elmenu-navutility-link-color;
+      &:visited {
+         color: $elmenu-navutility-link-color;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+         color: $elmenu-navutility-link-hover-color;
+      }
+   }
+
+}
+
+.nav--main {
+
+   // Level 1 doesn't need background colors
+   // UNLESS you want them to be different from the holder BG
+   .elm__link {
+      color: $elmenu-navmain-link-color;
+      &:visited {
+         color: $elmenu-navmain-link-color;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+         color: $elmenu-navmain-link-hover-color;
+      }
+   }
+
+   // Level 2
+   .elm__link--sub {
+      color: $elmenu-navmain-link-color;
+      background-color: $elmenu-navmain-sub-background;
+      &:visited {
+         color: $elmenu-navmain-link-color;
+         background-color: $elmenu-navmain-sub-background;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+         color: $elmenu-navmain-link-color;
+         background-color: $elmenu-navmain-sub-hover-background;
+      }
+   }
+
+   // Level 3
+   .elm__link--subsub {
+      min-width: 200px; // To make up for really short links
+      color: $elmenu-navmain-link-color;
+      background-color: $elmenu-navmain-subsub-background;
+      &:visited {
+         color: $elmenu-navmain-link-color;
+         background-color: $elmenu-navmain-subsub-background;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+         color: $elmenu-navmain-link-color;
+         background-color: $elmenu-navmain-subsub-hover-background;
+      }
+   }
+
+   // And keep the hover BG color on the --sub level, 
+   // When we're hovering on the --subsub level (below)
+   .elm__item--sub:hover > a {
+       background-color: $elmenu-navmain-sub-hover-background;
+   }
+
+}
+
+
+/*
+SHOW THE MOBILE MENU (slide it in)
+Attach the .show-nav class to the body tag (with jQuery), so we have the option 
+to manipulate more page elements when the menu is open. 
+*/
+body.show-nav #canvas {
+   -webkit-transform: translateX( (-1 * $elmenu-elmobile-width) );
+   transform: translateX( (-1 * $elmenu-elmobile-width) );
+}
+
+.elmtoggle__holder,
+.elmtoggle__holder--mobile {
+   display: block;
+   width: 100%;
+   text-align: right;
+   padding: 1rem 1rem .75rem 1rem;
+   border-bottom: 1px solid white;
+}
+
+.elmtoggle__holder {
+   background-color: $elmenu-toggle-holder-background-color;
+}
+
+.elmtoggle__holder--mobile {
+   background-color: $elmenu-mobile-toggle-holder-background-color;
+}
+
+// We only need to hide the toggle holder that replaces the desktop nav
+// It's fine if we leave the mobile (close) toggler alone. It's going to hide 
+// with the mobile nav at the appropriate size.
+.elmtoggle__holder {
+   @media only screen and (min-width: $elmenu-mobile-breakpoint){
+      display: none;
+   }
+   a {
+      text-decoration: none;
+   }
+}
+
+// Control the icon size (both desktop & mobile)
+.elmtoggle__icon {
+   width: auto;
+   height: 1.5rem;
+   display: inline-block;
+   vertical-align: top;
+}
+
+
+/**
+ * --------------------------------- The header (desktop view) menu styles
+ */
+
+// ----------- Level 1
+
+.elm__list {
+   @extend .list-reset;
+}
+.elm__item {
+   display: inline-block;
+}
+.elm__link {
+   display: block;
+   padding: $elmenu-navutility-link-padding;
+   text-decoration: none;
+}
+
+// ----------- Level 2
+
+.elm__list--sub {
+   @extend .list-reset;
+}
+.elm__link--sub {
+   display: block;
+   padding: $elmenu-navmain-link-padding;
+   text-decoration: none;
+}
+
+// Level 2: Display
+
+.elm__list--sub {
+   display: none;
+   text-align: left;
+}
+.elm__item.hassub:hover .elm__list--sub {
+   display: block;
+}
+
+// Level 2: Position
+
+.elm__item.hassub {
+   position: relative;
+}
+.elm__item.hassub .elm__list--sub {
+   position: absolute;
+   top: 100%;
+   left: 0;
+   width: auto;
+}
+
+// Level 2: Style
+
+.elm__item--sub {
+   width: 100%;
+}
+.elm__link--sub {
+   display: block;
+   padding: $elmenu-navutility-link-padding;
+   white-space: nowrap;
+}
+
+// ----------- Level 3
+
+.elm__list--subsub {
+   @extend .list-reset;
+}
+.elm__link--subsub {
+   display: block;
+   padding: $elmenu-navmain-link-padding;
+   text-decoration: none;
+}
+
+// Level 3: Display
+
+.elm__list--subsub {
+   display: none;
+   text-align: left;
+}
+.elm__item--sub.hassubsub:hover .elm__list--subsub {
+   display: block;
+}
+
+// Level 3: Position
+
+.elm__item--sub.hassubsub {
+   position: relative;
+}
+.elm__item--sub.hassubsub .elm__list--subsub {
+   position: absolute;
+   top: 0;
+   left: 100%;
+   width: auto;
+}
+
+// Level 3: Style
+
+.elm__item--subsub {
+   width: 100%;
+}
+.elm__link--subsub {
+   display: block;
+   padding: $elmenu-navutility-link-padding;
+   white-space: nowrap;
+}
+
+
+/**
+ * --------------------------------- The mobile menu styles
+ */
+
+.m-elm__list,
+.m-elm__list--sub,
+.m-elm__list--subsub {
+   list-style: none;
+   text-align: left;
+   padding-left: 0;
+}
+
+.m-elm__link,
+.m-elm__link--sub,
+.m-elm__link--subsub {
+   color: white;
+   &:visited {
+      color: white;
+   }
+   &:hover,
+   &:active,
+   &:focus {
+      color: white;
+   }
+}
+
+// ----------- Level 1
+
+.m-elm__list {
+   display: block;
+   margin: 0;
+   border-bottom: 1px solid white;
+}
+.m-elm__item {
+   border-bottom: 1px solid white;
+   &:last-of-type {
+      border-bottom: none;
+   }
+}
+.m-elm__link {
+   display: block;
+   padding: .85rem 1rem;
+   text-decoration: none;
+}
+
+// ----------- Level 2
+
+.m-elm__list--sub {
+   display: none;
+   margin: 0;
+}
+.m-elm__item--sub {
+   border-bottom: 1px solid white;
+   &:first-of-type {
+      border-top: 1px solid white;
+   }
+   &:last-of-type {
+      border-bottom: none;
+   }
+}
+.m-elm__link--sub {
+   display: block;
+   padding: .85rem 1rem;
+   text-decoration: none;
+}
+
+// ----------- Level 3
+
+.m-elm__list--subsub {
+   display: none;
+   margin: 0;
+}
+.m-elm__item--subsub {
+   border-bottom: 1px solid white;
+   &:first-of-type {
+      border-top: 1px solid white;
+   }
+   &:last-of-type {
+      border-bottom: none;
+   }
+}
+.m-elm__link--subsub {
+   display: block;
+   padding: .85rem 1rem;
+   text-decoration: none;
+}
+
+// ----------- the span trigger
+
+.elmtrigger,
+.elmtrigger--sub {
+   cursor: pointer;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+   //border: 1px solid black;
+}
+
+// the SVG
+.elmtrigger img,
+.elmtrigger--sub img {
+   margin: 0 auto;
+   padding: 0;
+   display: inline-block;
+   vertical-align: middle;
+   width: auto;
+   height: .75rem;
+   -ms-transform: rotate(0deg);
+   -webkit-transform: rotate(0deg);
+   transform: rotate(0deg);
+}
+
+.elmtrigger img.rotate,
+.elmtrigger--sub img.rotate {
+   -ms-transform: rotate(180deg);
+   -webkit-transform: rotate(180deg);
+   transform: rotate(180deg);
+   -webkit-animation:spin 4s linear infinite;
+   -moz-animation:spin 4s linear infinite;
+   animation:spin 4s linear infinite;       
+}
+
+// ----------- Some specific styles to handle mobile links with subs
+
+/*
+Put a background color on the LI that has a sub-nav toggle.
+This creates the appearance of a unique BG color on the span (the sub-nav toggle trigger)
+*/
+
+// BG on the level 1 li (carries into the span)
+.m-elm__item.hassub {
+   background-color: $highlight-color;
+}
+// Then 'reset' the link's BG color. The span still has the BG color of the li
+.m-elm__item.hassub a {
+   background-color: $brand-color-1;
+}
+
+// BG on the level 1 li (carries into the span)
+.m-elm__item--sub.hassubsub {
+   background-color: $highlight-color;
+}
+// Then 'reset' the link's BG color. The span still has the BG color of the li
+.m-elm__item--sub.hassubsub a {
+   background-color: lighten($brand-color-1, 10%);
+}
+
+.m-elm__item--subsub,
+.m-elm__link--subsub {
+   background-color: lighten($brand-color-1, 20%) !important; // Not sure why ! is needed here
+}
+
+.hassub .m-elm__link,
+.hassub .m-elm__link--sub,
+.hassub .m-elm__link--subsub {// excludes the span
+   border-right: 1px solid white !important;
+}
+
+// fit the links and triggers on one line and space them
+.hassub .m-elm__link,
+.elmtrigger,
+.m-elm__item--sub.hassub .m-elm__link--sub,
+.elmtrigger--sub {
+   display: inline-block;
+}
+
+.hassub .m-elm__link,
+.hassubsub .m-elm__link--sub { 
+   display: inline-block;
+   width: 80%; 
+}
+
+.elmtrigger,
+.elmtrigger--sub { 
+   display: inline-block;
+   width: 20%; 
+   text-align: center;
+}
+
+// nav elements that DO contain sub-nav links (most commonly the main nav)
+
+/*
+.elmacc__list,
+.elmacc__sublist {
+   @extend .list-reset;
+}
+*/
+
+/*
+.elmacc__item {
+   display: inline-block;
+}
+*/
+
+/*
+.elmacc__link {
+   display: block;
+   padding: $elmenu-navmain-link-padding;
+   color: $elmenu-link-color;
+   &:visited {
+      color: $elmenu-link-color;
+   }
+   &:hover,
+   &:active,
+   &:focus {
+      color: $elmenu-link-hover-color;
+   }
+}
+*/
+
+// Control the sub-menu display & hover
+/*
+.elmacc__sublist {
+   display: none;
+   text-align: left;
+}
+.elmacc__item:hover .elmacc__sublist {
+   display: block;
+}
+*/
+
+/*
+// control the position
+.elmacc__item.hassub {
+   position: relative;
+}
+.elmacc__item.hassub .elmacc__sublist {
+   position: absolute;
+   top: 100%;
+   left: 0;
+   width: auto;
+   background-color: #ddd;
+}
+*/
+
+/*
+// Style the sub-nav when it's displaying
+.elmacc__subitem {
+   width: 100%;
+}
+.elmacc__sublink {
+   display: block;
+   padding: $elmenu-navutility-link-padding;
+   white-space: nowrap;
+   color: $elmenu-link-color;
+   background-color: $elmenu-navmain-background;
+   &:visited {
+      color: $elmenu-link-color;
+   }
+   &:hover,
+   &:active,
+   &:focus {
+      color: $elmenu-link-hover-color;
+      background-color: lighten($elmenu-navmain-background, 10%);
+   }
+}
+*/
+
+
+
+
+/*
+// The "normal" lists (one level, no subs)
+.elm__list {
+   @extend .list-reset;
+}
+.elm__item {
+   display: block;
+   border-bottom: 1px solid white;
+}
+.elm__link {
+   display: block;
+   padding: $elmenu-link-padding;
+   color: $elmenu-link-color;
+   background-color: $elmenu-level-one-background-color;
+   &:visited {
+      color: $elmenu-link-color;
+      background-color: $elmenu-level-one-background-color;
+   }
+   &:hover,
+   &:active,
+   &focus {
+      color: $elmenu-link-color;
+      background-color: $elmenu-level-two-background-color;
+   }
+}
+
+// Menus that contain sub-menus
+.elmacc,
+.elmacc__sublist {
+   @extend .list-reset;
+}
+.elmacc__sublist { 
+   display: none; 
+   border-top: 1px solid white;
+}
+.elmacc__item,
+.elmacc__subitem {
+   display: block;
+   border-bottom: 1px solid white;
+}
+.elmacc__subitem:last-of-type {
+   border-bottom: none;
+}
+.elmacc__link {
+   display: block;
+   padding: $elmenu-link-padding;
+   color: $elmenu-link-color;
+   background-color: $elmenu-level-one-background-color;
+   &:visited {
+      color: $elmenu-link-color;
+      background-color: $elmenu-level-one-background-color;
+   }
+   &:hover,
+   &:active,
+   &focus {
+      color: $elmenu-link-color;
+      background-color: $elmenu-level-two-background-color;
+   }
+}
+
+.elmacc__sublink {
+   display: block;
+   padding: $elmenu-sublink-padding;
+   color: $elmenu-link-color;
+   background-color: $elmenu-level-two-background-color;
+   &:visited {
+      color: $elmenu-link-color;
+      background-color: $elmenu-level-two-background-color;
+   }
+   &:hover,
+   &:active,
+   &focus {
+      color: $elmenu-link-color;
+      background-color: $elmenu-level-two-hover-background-color;
+   }
+}
+
+// the span trigger
+.elm__trigger {
+   cursor: pointer;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+   
+   // the SVG
+   img {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      vertical-align: middle;
+      width: auto;
+      height: 1rem;
+      -ms-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+   }
+   img.rotate {
+      -ms-transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      -webkit-animation:spin 4s linear infinite;
+      -moz-animation:spin 4s linear infinite;
+      animation:spin 4s linear infinite;       
+   }
+}
+
+// Some specific styles to handle mobile links with subs
+
+// Put a GB color on the LI that has a sub-nav toggle.
+// This creates the appearance of a unique BG color on the span (the sub-nav toggle trigger)   
+.elmacc__item.hassub {// the LI
+   background-color: $elmenu-mobile-subnav-toggle-background-color;
+}
+.elmacc__item.hassub .elmacc__link {//excludes the span
+   border-right: 1px solid white;
+}
+
+// fit the link and trigger on one line
+.elmacc__item.hassub .elmacc__link,
+.elm__trigger {
+   display: inline-block;
+}
+.elmacc__item.hassub .elmacc__link { width: 80%; }
+.elm__trigger { width: 20%; }
+*/

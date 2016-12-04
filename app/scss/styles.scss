@@ -1,0 +1,26 @@
+/**
+ * @elmnt
+ */
+
+
+/**
+ * None of these are necessary for the elmenu plugin.
+ * It's just some basic stuff for my demo page.
+ * All the variables for the plugin styles are in the _elmenu partial.
+ */
+@import 'reset';
+@import 'variables';
+@import 'mixins';
+@import 'base';
+@import 'type';
+@import 'grid';
+@import 'util';
+
+
+/**
+ * This is the only component you need
+ * to use the elmenu plugin in your project, 
+ * and you can re-style most of it to suit your needs.
+ * See the comments in this partial for more info!
+ */
+@import 'elmenu';

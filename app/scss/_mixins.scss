@@ -1,0 +1,19 @@
+/**
+ * Mixins
+ */
+
+// transitions
+@mixin trans($t, $easing) {
+  -webkit-transition: all $t $easing;
+  -moz-transition: all $t $easing;
+  -ms-transition: all $t $easing;
+  -o-transition: all $t $easing;
+  transition: all $t $easing;
+}
+
+// global border-box setting
+@mixin bbox {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+}
