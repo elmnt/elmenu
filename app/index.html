@@ -18,6 +18,10 @@
 <!-- Add Open Sans for the demo page -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
+<style>
+  pre, code { color: red; }
+</style>
+
 </head>
 <body>
 
@@ -99,8 +103,39 @@
   </ul>
 
   <p>&nbsp;</p>
+  <h4>Usage:</h4>
+
+  <p>The <strong>elmenu</strong> script is creating and off-canvas menu system for mobile display. Your top-level structure should look like this:</p>
+
+  <pre>
+    <!doctype html>
+    <html lang="en">
+    <head></head>
+    <body>
+
+    <main id="page">
+    <div id="canvas">
+
+    <header id="elmain"></header>
+
+    <!-- page content -->
+
+    <footer></footer>
+
+    <nav id="elmobile"></nav>
+
+    </div><!-- #canvas -->
+    </main><!-- #page -->
+
+    </body>
+    </html>
+  </pre>
+
+  <p>requires a specific markup format in your site's desktop navigation system.</p>
+
+  <p>&nbsp;</p>
   <p>( Below is just a bunch of dummy content to mimic a 'normal' page. )</p>
-  
+
   </div>
 
   <div class="grid__col--30"></div>
@@ -333,8 +368,8 @@
 $(document).ready(function () {
 
   /*
-  Set the order you want the header nav elements to show up 
-  in the mobile nav. Reminder: it's an array, so 0 is the first item. 
+  Set the order you want the header nav elements to show up
+  in the mobile nav. Reminder: it's an array, so 0 is the first item.
   */
   var menuOrder = ['2','0','1'];
   $( '#elmain' ).elmenu( menuOrder );

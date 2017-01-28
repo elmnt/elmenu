@@ -586,7 +586,6 @@ body.show-nav #canvas {
    text-align: center;
    margin: 0;
    padding: 0;
-   //border: 1px solid black;
 }
 
 // the SVG
@@ -634,13 +633,14 @@ This creates the appearance of a unique BG color on the span (the sub-nav toggle
    background-color: $highlight-color;
 }
 // Then 'reset' the link's BG color. The span still has the BG color of the li
-.m-elm__item--sub.hassubsub a {
+.m-elm__item--sub.hassubsub a,
+.m-elm__link--sub {
    background-color: lighten($brand-color-1, 10%);
 }
 
 .m-elm__item--subsub,
 .m-elm__link--subsub {
-   background-color: lighten($brand-color-1, 20%) !important; // Not sure why ! is needed here
+   background-color: lighten($brand-color-1, 20%);
 }
 
 .hassub .m-elm__link,

@@ -46,9 +46,9 @@ gulp.task('sass', function() {
 // ----------- browserSync, Sass, watch files
 
 gulp.task('default', ['browserSync', 'sass'], function (){
-  gulp.watch(stylesInput, ['sass']); 
-  gulp.watch(scriptsInput, browserSync.reload); 
-  gulp.watch(markupInput, browserSync.reload); 
+  gulp.watch(stylesInput, ['sass']);
+  gulp.watch(scriptsInput, browserSync.reload);
+  gulp.watch(markupInput, browserSync.reload);
 });
 
 // ----------- minify CSS & JS, put everything in /dist

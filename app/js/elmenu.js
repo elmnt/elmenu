@@ -37,7 +37,7 @@ Quick description (see comments below for more info)
       var toggleClose  = $( '#elmobiletoggle' );
       var subToggle    = $( '<span class="elmtrigger"><img src="img/arrow-down.svg" alt="Open Sub Menu"></span>' );
       var subsubToggle = $( '<span class="elmtrigger--sub"><img src="img/arrow-down.svg" alt="Open Sub Menu"></span>' );
-      
+
       // ----------- Sub-functions
 
       // 2) mobileClasses()
@@ -45,8 +45,8 @@ Quick description (see comments below for more info)
       /*
       Replace all the desktop classes with mobile classes:
       We could use the parent container IDs ( #elmenu and #elmobile ),
-      and restyle the same classes based on nesting inside the IDs, 
-      but that kind of dominant specificity is bad practice. We're just 
+      and restyle the same classes based on nesting inside the IDs,
+      but that kind of dominant specificity is bad practice. We're just
       removing all the desktop classes, and replacing them with mobile classes.
       NOTE: This can be DRY with an array-loop approach.
       */
@@ -101,10 +101,10 @@ Quick description (see comments below for more info)
       // Show / Hide the mobile nav
       function toggleNav() {
          $( 'body' ).toggleClass( 'show-nav' );
-         /* 
-         To do anything specific on open/close, use the conditional method (below). 
-         Otherwise, just toggle it. We could apply the toggle class more specifically, 
-         on the #page element, for instance, but applying it to the body lets us 
+         /*
+         To do anything specific on open/close, use the conditional method (below).
+         Otherwise, just toggle it. We could apply the toggle class more specifically,
+         on the #page element, for instance, but applying it to the body lets us
          affect much more of the DOM, if we want, when we toggle.
 
          if ($( 'body' ).hasClass( 'show-nav' )) {
@@ -154,7 +154,7 @@ Quick description (see comments below for more info)
       * Create an array of all nav modules in the header menu (inside #elmain) by targeting the .nav--* class.
       * They MUST all have this .nav--* class, whether it's a <nav> tag or a <div>.
       * We're going to return their child ULs, and place & re-style them in the mobile nav module.
-      * Note: We're using this .nav--* class, and not targeting the <nav> tags directly, 
+      * Note: We're using this .nav--* class, and not targeting the <nav> tags directly,
       * because some links may or may not semantically belong in <nav> tags.
       * We just want to get the ULs that contain the links.
       */
@@ -200,6 +200,6 @@ Quick description (see comments below for more info)
       });
 
       return this;
-      
-   }; 
+
+   };
 })( jQuery );
