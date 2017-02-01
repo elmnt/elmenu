@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="A lightweight jQuery/CSS menu system for responsive sites and web apps">
-<meta name="author" content="author">
+<meta name="author" content="@elmnt">
 <meta name="robots" content="index, nofollow">
 
 <!--build:css css/styles.min.css -->
@@ -19,7 +19,33 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
 <style>
-  pre, code { color: red; }
+pre {
+    margin-bottom: 2rem !important;
+}
+pre,
+code {
+    height: auto !important;
+}
+code {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Consolas', monospace;
+    color: purple;
+    font-size: .85rem;
+    line-height: 1.5em;
+}
+.bl {
+    color: #07a;
+}
+.grid--single {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: left;
+}
+.pnodes p.pn {
+    margin-bottom: .5rem;
+}
 </style>
 
 </head>
@@ -30,50 +56,47 @@
 
 <header id="elmain">
 
-  <div class="elmtoggle__holder">
-    <a href="#!" id="elmtoggle" class="cf"><img src="img/hamburger.svg" alt="Open Sub Menu" class="elmtoggle__icon"></a>
-  </div>
+    <div class="elmtoggle__holder">
+        <a href="#!" id="elmtoggle" class="cf"><img src="img/hamburger.svg" alt="Open Sub Menu" class="elmtoggle__icon"></a>
+    </div>
 
-  <div class="navholder--utility cf">
+    <div class="navholder--utility cf">
+        <nav>
+            <ul class="nav--utility elm__list">
+                <li class="elm__item"><a class="elm__link" href="#!">About</a></li>
+                <li class="elm__item"><a class="elm__link" href="#!">Contact</a></li>
+                <li class="elm__item"><a class="elm__link" href="#!">Downloads</a></li>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="nav--social elm__list">
+                <li class="elm__item"><a class="elm__link" href="#!">Facebook</a></li>
+                <li class="elm__item"><a class="elm__link" href="#!">Twitter</a></li>
+            </ul>
+        </nav>
+    </div>
 
-    <nav>
-      <ul class="nav--utility elm__list">
-        <li class="elm__item"><a class="elm__link" href="#!">About</a></li>
-        <li class="elm__item"><a class="elm__link" href="#!">Contact</a></li>
-        <li class="elm__item"><a class="elm__link" href="#!">Downloads</a></li>
-      </ul>
-    </nav>
-
-    <ul class="nav--social elm__list">
-      <li class="elm__item"><a class="elm__link" href="#!">Facebook</a></li>
-      <li class="elm__item"><a class="elm__link" href="#!">Twitter</a></li>
-    </ul>
-
-  </div>
-
-  <div class="navholder--main">
-
-    <nav>
-      <ul class="nav--main elm__list">
-        <li class="elm__item hassub"><a class="elm__link" href="#!">Product 1</a>
-          <ul class="elm__list--sub">
-            <li class="elm__item--sub hassubsub"><a class="elm__link--sub" href="#!">Product 1.1</a>
-              <ul class="elm__list--subsub">
-                <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.1</a></li>
-                <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.2</a></li>
-                <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.3</a></li>
-              </ul>
-            </li>
-            <li class="elm__item--sub"><a class="elm__link--sub" href="#!">Product 1.2</a></li>
-            <li class="elm__item--sub"><a class="elm__link--sub" href="#!">Product 1.3</a></li>
-          </ul>
-        </li>
-        <li class="elm__item"><a class="elm__link" href="#!">Product 2</a></li>
-        <li class="elm__item"><a class="elm__link" href="#!">Product 3</a></li>
-      </ul>
-    </nav>
-
-  </div>
+    <div class="navholder--main">
+        <nav>
+            <ul class="nav--main elm__list">
+                <li class="elm__item hassub"><a class="elm__link" href="#!">Product 1</a>
+                    <ul class="elm__list--sub">
+                        <li class="elm__item--sub hassubsub"><a class="elm__link--sub" href="#!">Product 1.1</a>
+                            <ul class="elm__list--subsub">
+                                <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.1</a></li>
+                                <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.2</a></li>
+                                <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.3</a></li>
+                            </ul>
+                        </li>
+                        <li class="elm__item--sub"><a class="elm__link--sub" href="#!">Product 1.2</a></li>
+                        <li class="elm__item--sub"><a class="elm__link--sub" href="#!">Product 1.3</a></li>
+                    </ul>
+                </li>
+                <li class="elm__item"><a class="elm__link" href="#!">Product 2</a></li>
+                <li class="elm__item"><a class="elm__link" href="#!">Product 3</a></li>
+            </ul>
+        </nav>
+    </div>
 
 </header>
 
@@ -81,278 +104,259 @@
 <div class="wrap">
 <div class="grid">
 
-  <div class="grid__col--70">
 
-  <h1>elmenu</h1>
-  <h4>A lightweight, responsive jQuery menu system</h4>
+    <div class="grid--single">
+        <h1>elmenu</h1>
+        <h4>A lightweight, responsive jQuery menu system</h4>
+        <p><strong>Current Version 1.1.0</strong></p>
+        <p>Vanilla JavaScript version coming soon</p>
+        <p><em><strong>elmenu</strong></em> is kind of a silly name. It's not meant to be a Spanish for "The Menu." I made it (<a href="https://github.com/elmnt">elmnt</a>), and it's a menu system. There you go. Clever, I know.</p>
+        <h4>Features:</h4>
+        <ul>
+            <li>The slide-in mobile menu auto-populates with the header navigation content.</li>
+            <li>The minified elmenu script is just <strong>2kB</strong></li>
+            <li>The compiled/minified elmenu Sass partial is <strong>4kB</strong></li>
+            <li>The mobile nav links that contain a sub-nav (clones of the header nav links with drop-downs) have both a parent anchor link, and a separate toggle trigger for the sub-links.</li>
+            <li>The elmenu Sass partial is highly portable. The additional styles in this demo have no effect on the menu system. As long as you use the markup structure &amp; associated BEM classes, you should be able to drop it into your project without too much clean-up.</li>
+        </ul>
+        <p>&nbsp;</p>
+        <h4>Usage:</h4>
+        <h6>1) Basic template structure:</h6>
+        <p><strong>elmenu</strong> uses an off-canvas menu system for mobile display. Your top-level markup should look like this:</p>
+    </div>
 
-  <p><strong>Current Version 1.0.0</strong></p>
 
-  <p>Vanilla JavaScript version coming soon</p>
-
-  <p><em><strong>elmenu</strong></em> is kind of a silly name. It's not meant to be a Spanish for "The Menu." I made it (<a href="https://github.com/elmnt">elmnt</a>), and it's a menu system. There you go. Clever, I know.</p>
-
-  <h4>Features:</h4>
-
-  <ul>
-    <li>The slide-in mobile menu auto-populates with the header navigation content.</li>
-    <li>The minified elmenu script is just <strong>2kB</strong></li>
-    <li>The compiled/minified elmenu Sass partial is <strong>4kB</strong></li>
-    <li>The mobile nav links that contain a sub-nav (clones of the header nav links with drop-downs) have both a parent anchor link, and a separate toggle trigger for the sub-links.</li>
-    <li>The elmenu Sass partial is highly portable. The additional styles in this demo have no effect on the menu system. As long as you use the markup structure &amp; associated BEM classes, you should be able to drop it into your project without too much clean-up.</li>
-  </ul>
-
-  <p>&nbsp;</p>
-  <h4>Usage:</h4>
-
-  <p>The <strong>elmenu</strong> script is creating and off-canvas menu system for mobile display. Your top-level structure should look like this:</p>
-
-  <pre>
-    <!doctype html>
-    <html lang="en">
-    <head></head>
-    <body>
-
+    <pre class="language-markup" data-language="markup">
+    <code class="language-markup codeblock">
     <main id="page">
     <div id="canvas">
 
-    <header id="elmain"></header>
+        <header id="elmain">
+            <div class="elmtoggle__holder">
+                <a href="#" id="elmtoggle"></a>
+            </div>
+        </header>
 
-    <!-- page content -->
+        <p>Page Content</p>
 
-    <footer></footer>
+        <footer></footer>
 
-    <nav id="elmobile"></nav>
+        <nav id="elmobile">
+            <div class="elmtoggle__holder--mobile">
+                <a href="#" id="elmobiletoggle"></a>
+            </div>
+        </nav>
 
-    </div><!-- #canvas -->
-    </main><!-- #page -->
-
-    </body>
-    </html>
-  </pre>
-
-  <p>requires a specific markup format in your site's desktop navigation system.</p>
-
-  <p>&nbsp;</p>
-  <p>( Below is just a bunch of dummy content to mimic a 'normal' page. )</p>
-
-  </div>
-
-  <div class="grid__col--30"></div>
-
-</div><!-- /.grid -->
-</div><!-- /.wrap -->
-</div><!-- /.container -->
-
-<!-- type -->
-
-<div class="container">
-<div class="wrap">
-<div class="grid">
-
-  <div class="grid__col--100">
-    <div class="content">
-      <h1>h1 Lorem ipsum</h1>
-      <h2>h2 Lorem ipsum</h2>
-      <h3>h3 Lorem ipsum</h3>
-      <h4>h4 Lorem ipsum</h4>
-      <h5>h5 Lorem ipsum</h5>
     </div>
-  </div>
-
-</div><!-- /.grid -->
-</div><!-- /.wrap -->
-</div><!-- /.container -->
-
-<!-- /type -->
-
-<div class="container">
-<div class="wrap">
-<div class="grid">
-  <div class="grid__col--50">
-    <div class="content">
-      <h2>50 Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div><!--
-  --><div class="grid__col--50">
-    <div class="content">
-      <h2>50 Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div>
-</div><!-- /.grid -->
-</div><!-- /.wrap -->
-</div><!-- /.container -->
-
-<div class="container">
-<div class="wrap">
-<div class="grid">
-  <div class="grid__col--30">
-    <div class="content">
-    <h2>30 Lorem ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div><!--
---><div class="grid__col--70">
-    <div class="content">
-    <h2>70 Lorem ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div>
-</div><!-- /.grid -->
-</div><!-- /.wrap -->
-</div><!-- /.container -->
+    </main>
+    </code>
+    </pre>
 
 
-<div class="container">
-<div class="wrap">
-<div class="grid">
-  <div class="grid__col--40">
-    <div class="content">
-    <h2>40 Lorem ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <div class="grid--single">
+        <h6>2) Header Navigation:</h6>
+        <p>As you can see in the top-level markup structure, above, there are two main elements where everything happens: <strong class="bl">#elmain</strong> (the desktop nav) and <strong class="bl">#elmobile</strong> (the mobile nav). You're going to put all your navigation in the <strong class="bl">#elmain</strong> nav, and you're not going to touch the <strong class="bl">#elmobile</strong> nav. That gets populated by the elmenu script.</p>
+        <p>The key ingredient is following a very specific structure in your markup (and attached <a href="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">BEM</a> classes). In this demo page, I've got two header nav bars (a 'utility' nav, followed by a 'main' nav). This is a pretty common convention. You could have a similar setup. You could have only one nav bar. You could have three, or four. That might be an awful UX, but the point being: it's possible.</p>
+        <p>I'm using some wrappers, inside the <strong class="bl">#elmain</strong>, with the <strong class="bl">.navholder--</strong> prefix. These just allow me some basic styling on each menu container.</p>
+        <p>Drill down a bit more, and you'll see the <strong class="bl">.nav--</strong> classes. This is the class we're targeting to pick up the stuff we'll clone into the mobile menu. I could have targeted each 'nav' tag, but there's an outside chance you might want to target something in the header that's not a semantic 'nav' element. So I left those alone.</p>
+        <p>To better demonstrate this hierarchy, here are some possible examples. You don't need to follow my 'utility,' main,' and 'social,' idea. I just did that because it's pretty common. Let's assume you have two nav bars, as in this demo page: 'utility' and 'main.'</p>
     </div>
-  </div><!--
---><div class="grid__col--60">
-    <div class="content">
-    <h2>60 Lorem ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div>
-</div><!-- /.grid -->
-</div><!-- /.wrap -->
-</div><!-- /.container -->
 
-<div class="container">
-<div class="wrap">
-<div class="grid">
-  <div class="grid__col--333">
-    <div class="content">
-    <h3>33 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div><!--
---><div class="grid__col--333">
-    <div class="content">
-    <h3>33 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div><!--
---><div class="grid__col--333">
-    <div class="content">
-    <h3>33 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div>
-</div><!-- /.grid -->
-</div><!-- /.wrap -->
-</div><!-- /.container -->
 
-<div class="container">
-<div class="wrap">
-<div class="grid">
-  <div class="grid__col--33">
-    <div class="content">
-    <h2>33 Lorem ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <pre class="language-markup" data-language="markup">
+    <code class="language-markup codeblock">
+    <div class="navholder--utility">
+        <nav>
+            <ul class="nav--utility">
+                <li><a href="#">link</a></li>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="nav--social">
+                <li><a href="#">link</a></li>
+            </ul>
+        </nav>
     </div>
-  </div><!--
---><div class="grid__col--67">
-    <div class="content">
-    <h2>67 Lorem ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div>
-</div><!-- /.grid -->
-</div><!-- /.wrap -->
-</div><!-- /.container -->
 
-<div class="container">
-<div class="wrap">
-<div class="grid">
-  <div class="grid__col--25">
-    <div class="content">
-    <h3>25 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <div class="navholder--main">
+        <nav>
+            <ul class="nav--main">
+                <li><a href="#">link</a></li>
+            </ul>
+        </nav>
     </div>
-  </div><!--
---><div class="grid__col--25">
-    <div class="content">
-    <h3>25 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div><!--
---><div class="grid__col--25">
-    <div class="content">
-    <h3>25 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div><!--
---><div class="grid__col--25">
-    <div class="content">
-    <h3>25 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div>
-</div><!-- /.grid -->
-</div><!-- /.wrap -->
-</div><!-- /.container -->
+    </code>
+    </pre>
 
-<div class="container">
-<div class="wrap">
-<div class="grid">
 
-  <div class="grid__col--20">
-    <div class="content">
-    <h3>20 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <div class="grid--single">
+        <p>And the 'utility' has a couple sub-elements. This is very flexible. Just keep the <strong class="bl">.navholder--</strong> wrapper and <strong class="bl">.nav--</strong> child setup, and you can have as many individual pieces inside one <strong class="bl">.navholder--</strong> as is logical for you.</p>
+        <p>Or perhaps you just have one nav bar, consisting of your site's navigation, and a search bar:</p>
     </div>
-  </div><!--
---><div class="grid__col--20">
-    <div class="content">
-    <h3>20 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+
+    <pre class="language-markup" data-language="markup">
+    <code class="language-markup codeblock">
+    <div class="navholder--main">
+        <nav>
+            <ul class="nav--main">
+                <li><a href="#">link</a></li>
+            </ul>
+        </nav>
+        <div class="nav--search">
+            <!-- search module here -->
+        </div>
     </div>
-  </div><!--
---><div class="grid__col--20">
-    <div class="content">
-    <h3>20 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </code>
+    </pre>
+
+
+    <div class="grid--single">
+        <p>The important takeaways:</p>
+        <ol>
+            <li>Any module you want placed in the mobile menu must have the <strong class="bl">.nav--</strong> class.</li>
+            <li>The <strong class="bl">.nav--main</strong> element is where you want to put your multi-level menu, if you're using one. We'll get into that structure next.</li>
+        </ol>
     </div>
-  </div><!--
---><div class="grid__col--20">
-    <div class="content">
-    <h3>20 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+
+    <p>&nbsp;</p>
+
+
+    <div class="grid--single">
+        <h6>3) Header Navigation: <span style="text-transform:none;">Complete BEM style class structure, with all the options</span></h6>
+        <p>Now we'll attach a complete set of BEM classes to complete the visual styles for the entire header menu. When the individual pieces of your header nav are cloned into your mobile menu, these classes are duplicated with a special prefix to handle all the unique mobile styling.</p>
+        <p>Notice the general BEM (element) suffix convention I'm using for the lists:</p>
+        <p>
+        __list (the ul)<br>
+        __item (the li)<br>
+        __link (the a)
+        </p>
+        <p>Here's the whole working <strong>elmenu</strong> header, as in this demo, with some detailed explanation to follow:</p>
     </div>
-  </div><!--
---><div class="grid__col--20">
-    <div class="content">
-    <h3>20 Lorem ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+    <!--
+
+    <p>I chose to modify the class names via jQuery because it's a fairly simple process, and, more important, it gets us away from the need to use the <em>same</em> class names in the mobile menu, re-styled with the specificity of the parent ID. While this is effective, it's generally seen as poor practice to use an ID for such a high-level of specificity, water-falling several levels into the markup.</p>
+    <p>In other words, this:</p>
+    <pre class="language-css" data-language="css">
+    <code class="language-css codeblock">
+    .child {}
+    .grandchild {
+        color: blue;
+    }
+
+    .m-child {}
+    .m-grandchild {
+        color: red;
+    }
+    </code>
+    </pre>
+
+
+    <div class="grid--single">
+        <p>...is better than this:</p>
     </div>
-  </div>
+
+
+    <pre class="language-css" data-language="css">
+    <code class="language-css codeblock">
+    #desktop .child .grandchild {
+        color: blue;
+    }
+
+    #mobile .child .grandchild {
+        color: red;
+    }
+    </code>
+    </pre>
+
+    -->
+
+
+    <pre class="language-markup" data-language="markup">
+    <code class="language-markup codeblock">
+    <header id="elmain">
+
+        <div class="elmtoggle__holder">
+            <a href="#!" id="elmtoggle" class="cf"><img src="img/hamburger.svg" alt="Open Sub Menu" class="elmtoggle__icon"></a>
+        </div>
+
+        <div class="navholder--utility cf">
+            <nav>
+                <ul class="nav--utility elm__list">
+                    <li class="elm__item"><a class="elm__link" href="#!">About</a></li>
+                    <li class="elm__item"><a class="elm__link" href="#!">Contact</a></li>
+                    <li class="elm__item"><a class="elm__link" href="#!">Downloads</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="nav--social elm__list">
+                    <li class="elm__item"><a class="elm__link" href="#!">Facebook</a></li>
+                    <li class="elm__item"><a class="elm__link" href="#!">Twitter</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="navholder--main">
+            <nav>
+                <ul class="nav--main elm__list">
+                    <li class="elm__item hassub"><a class="elm__link" href="#!">Product 1</a>
+                        <ul class="elm__list--sub">
+                            <li class="elm__item--sub hassubsub"><a class="elm__link--sub" href="#!">Product 1.1</a>
+                                <ul class="elm__list--subsub">
+                                    <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.1</a></li>
+                                    <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.2</a></li>
+                                    <li class="elm__item--subsub"><a class="elm__link--subsub" href="#!">Product 1.1.3</a></li>
+                                </ul>
+                            </li>
+                            <li class="elm__item--sub"><a class="elm__link--sub" href="#!">Product 1.2</a></li>
+                            <li class="elm__item--sub"><a class="elm__link--sub" href="#!">Product 1.3</a></li>
+                        </ul>
+                    </li>
+                    <li class="elm__item"><a class="elm__link" href="#!">Product 2</a></li>
+                    <li class="elm__item"><a class="elm__link" href="#!">Product 3</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+    </code>
+    </pre>
+
+
+    <div class="grid--single pnodes">
+        <h6>4) Setting it up:</h6>
+        <p>If you just copy the entire block, above, and drop in your links, you're good. Of course it's likely you're going to need to customize it. Refer to the previous couple code blocks again, as a reminder how you can easily customize it. Just remember to keep your BEM classes (and of course your IDs) in place.</p>
+        <h6 style="text-transform:none;">The Script:</h6>
+        <p class="pn"><strong>Option 1:</strong> Drop the pre-compiled elmenu.js script into your local build.</p>
+        <p><strong>Option 2:</strong> Link the compiled elmenu.min.js script in your site's footer.</p>
+    </div>
+
+
+    <pre class="language-markup" data-language="markup"><code class="language-markup codeblock"><script src="/js/elmenu.min.js"></script></code></pre>
+
+
 </div><!-- /.grid -->
 </div><!-- /.wrap -->
 </div><!-- /.container -->
 
 <footer>
-  <div class="container">
-  <div class="wrap--single">
-  <div class="grid">
+    <div class="container">
+    <div class="wrap--single">
+    <div class="grid">
     <div class="content align--center">
-      <p>made by <a href="https://github.com/elmnt">elmnt</a></p>
+        <p>made by <a href="https://github.com/elmnt">elmnt</a></p>
     </div>
-  </div><!-- /.grid -->
-  </div><!-- /.wrap -->
-  </div><!-- /.container -->
+    </div><!-- /.grid -->
+    </div><!-- /.wrap -->
+    </div><!-- /.container -->
 </footer>
 
 <nav id="elmobile">
-  <div class="elmtoggle__holder--mobile">
-    <a href="#!" id="elmobiletoggle" class="cf"><img src="img/hamburger-close.svg" alt="Open Sub Menu" class="elmtoggle__icon"></a>
-  </div>
+    <div class="elmtoggle__holder--mobile">
+        <a href="#!" id="elmobiletoggle" class="cf"><img src="img/hamburger-close.svg" alt="Open Sub Menu" class="elmtoggle__icon"></a>
+    </div>
 </nav>
 
 </div><!-- #canvas -->
@@ -361,20 +365,35 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!--build:js js/elmenu.min.js -->
 <script src="js/elmenu.js"></script>
+<script src="js/prism.js"></script>
 <!-- endbuild -->
 
 <script type="text/javascript">
 
 $(document).ready(function () {
-
-  /*
-  Set the order you want the header nav elements to show up
-  in the mobile nav. Reminder: it's an array, so 0 is the first item.
-  */
-  var menuOrder = ['2','0','1'];
-  $( '#elmain' ).elmenu( menuOrder );
-
+    /*
+    Set the order you want the header nav elements to show up
+    in the mobile nav. Reminder: it's an array, so 0 is the first item.
+    */
+    var menuOrder = ['2','0','1'];
+    $( '#elmain' ).elmenu( menuOrder );
 });
+
+// Render HTML inside the code tag
+String.prototype.escapeHTML = function () {
+    return(
+    this.replace(/>/g,'&gt;').
+         replace(/</g,'&lt;').
+         replace(/"/g,'&quot;')
+    );
+};
+var codeEl = document.getElementsByClassName('codeblock');
+for (i = 0; i < codeEl.length; i++){
+    console.log(codeEl[i]);
+    if (codeEl) {
+        codeEl[i].innerHTML = codeEl[i].innerHTML.escapeHTML();
+    }
+}
 
 </script>
 

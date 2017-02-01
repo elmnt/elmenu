@@ -19,8 +19,14 @@
 
 /**
  * This is the only component you need
- * to use the elmenu plugin in your project, 
+ * to use the elmenu plugin in your project,
  * and you can re-style most of it to suit your needs.
  * See the comments in this partial for more info!
  */
 @import 'elmenu';
+
+
+/**
+ * Style for the prism.js plugin
+ */
+@import 'prism';

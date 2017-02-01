@@ -15,8 +15,8 @@
 .container {
   margin: 4rem auto;
   padding: $container-pad;
-  width: 100%; 
-  max-width: $container-max-width; 
+  width: 100%;
+  max-width: $container-max-width;
   text-align: center;
   background-color: white;
   @extend .cf;
@@ -25,13 +25,13 @@
 .wrap {
   margin: 0 auto;
   width: 100%;
-  max-width: $wrap-max-width; 
-  min-width: $wrap-min-width; 
+  max-width: $wrap-max-width;
+  min-width: $wrap-min-width;
   text-align: left;
   @extend .cf;
 }
 
-.wrap--single { 
+.wrap--single {
   @extend .wrap;
   max-width: $wrap-single-max-width;
   padding: $baseline 0;
@@ -39,7 +39,7 @@
 
 /*
 (slightly modified) joshnh grid
-credit: http://joshnh.com/weblog/creating-lightweight-grid-system/ 
+credit: http://joshnh.com/weblog/creating-lightweight-grid-system/
 */
 
 .grid {
@@ -80,8 +80,8 @@ credit: http://joshnh.com/weblog/creating-lightweight-grid-system/
     padding: $baseline;
   }
 
-  /* 
-  Remove left padding from the first .column module, 
+  /*
+  Remove left padding from the first .column module,
   and right padding from the last .column module,
   so our content stays flush with the .wrap module.
   */
