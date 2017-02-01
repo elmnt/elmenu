@@ -120,14 +120,17 @@ code {
             <li>The elmenu Sass partial is highly portable. The additional styles in this demo have no effect on the menu system. As long as you use the markup structure &amp; associated BEM classes, you should be able to drop it into your project without too much clean-up.</li>
         </ul>
         <p>&nbsp;</p>
+
+        <h4>Requirements:</h4>
+        <p>This script requires the jQuery library, and assumes you're using a Sass framework of some kind for your styles.</p>
+
         <h4>Usage:</h4>
         <h6>1) Basic template structure:</h6>
         <p><strong>elmenu</strong> uses an off-canvas menu system for mobile display. Your top-level markup should look like this:</p>
     </div>
 
 
-    <pre class="language-markup" data-language="markup">
-    <code class="language-markup codeblock">
+    <pre class="language-markup" data-language="markup"><code class="language-markup codeblock">
     <main id="page">
     <div id="canvas">
 
@@ -149,8 +152,7 @@ code {
 
     </div>
     </main>
-    </code>
-    </pre>
+    </code></pre>
 
 
     <div class="grid--single">
@@ -163,8 +165,7 @@ code {
     </div>
 
 
-    <pre class="language-markup" data-language="markup">
-    <code class="language-markup codeblock">
+    <pre class="language-markup" data-language="markup"><code class="language-markup codeblock">
     <div class="navholder--utility">
         <nav>
             <ul class="nav--utility">
@@ -185,8 +186,7 @@ code {
             </ul>
         </nav>
     </div>
-    </code>
-    </pre>
+    </code></pre>
 
 
     <div class="grid--single">
@@ -195,8 +195,7 @@ code {
     </div>
 
 
-    <pre class="language-markup" data-language="markup">
-    <code class="language-markup codeblock">
+    <pre class="language-markup" data-language="markup"><code class="language-markup codeblock">
     <div class="navholder--main">
         <nav>
             <ul class="nav--main">
@@ -207,8 +206,7 @@ code {
             <!-- search module here -->
         </div>
     </div>
-    </code>
-    </pre>
+    </code></pre>
 
 
     <div class="grid--single">
@@ -235,8 +233,8 @@ code {
         <p>Here's the whole working <strong>elmenu</strong> header, as in this demo, with some detailed explanation to follow:</p>
     </div>
 
-    <!--
 
+    <!--
     <p>I chose to modify the class names via jQuery because it's a fairly simple process, and, more important, it gets us away from the need to use the <em>same</em> class names in the mobile menu, re-styled with the specificity of the parent ID. While this is effective, it's generally seen as poor practice to use an ID for such a high-level of specificity, water-falling several levels into the markup.</p>
     <p>In other words, this:</p>
     <pre class="language-css" data-language="css">
@@ -245,37 +243,29 @@ code {
     .grandchild {
         color: blue;
     }
-
     .m-child {}
     .m-grandchild {
         color: red;
     }
     </code>
     </pre>
-
-
     <div class="grid--single">
         <p>...is better than this:</p>
     </div>
-
-
     <pre class="language-css" data-language="css">
     <code class="language-css codeblock">
     #desktop .child .grandchild {
         color: blue;
     }
-
     #mobile .child .grandchild {
         color: red;
     }
     </code>
     </pre>
-
     -->
 
 
-    <pre class="language-markup" data-language="markup">
-    <code class="language-markup codeblock">
+    <pre class="language-markup" data-language="markup"><code class="language-markup codeblock">
     <header id="elmain">
 
         <div class="elmtoggle__holder">
@@ -321,20 +311,16 @@ code {
         </div>
 
     </header>
-    </code>
-    </pre>
+    </code></pre>
 
 
     <div class="grid--single pnodes">
         <h6>4) Setting it up:</h6>
-        <p>If you just copy the entire block, above, and drop in your links, you're good. Of course it's likely you're going to need to customize it. Refer to the previous couple code blocks again, as a reminder how you can easily customize it. Just remember to keep your BEM classes (and of course your IDs) in place.</p>
-        <h6 style="text-transform:none;">The Script:</h6>
-        <p class="pn"><strong>Option 1:</strong> Drop the pre-compiled elmenu.js script into your local build.</p>
-        <p><strong>Option 2:</strong> Link the compiled elmenu.min.js script in your site's footer.</p>
+        <p>You can start by copying the entire block, above, and dropping in your links. Of course it's likely you're going to need to customize it. Refer to the previous couple code blocks again, as a reminder how you can easily customize it. Just remember to keep your BEM classes (and of course your IDs) in place.</p>
+        <p class="pn"><strong>Script:</strong> Drop the pre-compiled elmenu.js script into your local build.</p>
+        <p><strong>Styles:</strong> Drop the pre-compiled _elmenu.scss partial into your local build.</p>
+        <p>I've tried, as much as possible, to keep the Sass partial completely portable. The IDs and classes are uniquely specific, so you shouldn't run into any conflicts. All the variables are at the top of the partial. Move them into your own variables partial, or leave them in place.</p>
     </div>
-
-
-    <pre class="language-markup" data-language="markup"><code class="language-markup codeblock"><script src="/js/elmenu.min.js"></script></code></pre>
 
 
 </div><!-- /.grid -->
