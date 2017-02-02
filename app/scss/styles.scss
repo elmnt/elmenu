@@ -4,9 +4,8 @@
 
 
 /**
- * None of these are necessary for the elmenu plugin.
+ * None of these are necessary for the elmenu.
  * It's just some basic stuff for my demo page.
- * All the variables for the plugin styles are in the _elmenu partial.
  */
 @import 'reset';
 @import 'variables';
@@ -18,10 +17,8 @@
 
 
 /**
- * This is the only component you need
- * to use the elmenu plugin in your project,
- * and you can re-style most of it to suit your needs.
- * See the comments in this partial for more info!
+ * This is the only partial you need, to use elmenu in your project.
+ * All variables are contained.
  */
 @import 'elmenu';
 
