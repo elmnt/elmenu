@@ -7,11 +7,10 @@
 /*
 This was built upon a really great tutorial by Nicholas Cerminara on scotch.io
 
-Credit
+Credit:
 https://scotch.io/tutorials/off-canvas-menus-with-css3-transitions-and-transforms
 
 I built upon it to add:
-
 1. Desktop display of a fairly robust header nav with different link sections and sub-menus
 2. Automatic injection of all those nav (and sub-nav) elements into a mobile nav holder
 3. Accordion-style drop-down in the mobile nav, with the option to click both the parent link
@@ -20,9 +19,7 @@ I built upon it to add:
 
 
 /**
- * Variables:
- * Leave these in place, to keep this partial 100% portable,
- * or dump them into your global variables to make this part of your framework
+ * Variables
  */
 $site-color-3: #333;
 $site-color-6: #666;
@@ -30,19 +27,29 @@ $site-color-9: #999;
 $site-color-c: #ccc;
 $site-color-f: #f6f6f6;
 
-$brand-color-1: $site-color-3;
-$brand-color-2: $site-color-6;
-$brand-color-3: $site-color-9;
+$ava-brand-color:       #ef899c; //rgb(239, 137, 156)
+$ava-brand-color-dark:  #e82e68; //rgb(232, 46, 104)
+$ava-brand-color-light: #fed6dd; //rgb(254, 214, 221)
 
-$highlight-color: orange;
+$elmenu-color-1: $site-color-6;
+$elmenu-color-2: $site-color-6;
+$elmenu-color-3: $site-color-9;
+
+$elmenu-highlight-color: $ava-brand-color-dark;
+
+//$elmenu-font-family: $sans;
+$elmenu-font-family: inherit;
 
 $elmenu-mobile-breakpoint: 768px;
-$elmenu-base-color:        $site-color-3;
 
 // inject these globals into the variables below
-$elmenu-global-font-size:   .85rem;
-$elmenu-global-line-height: 1em;
-$elmenu-global-font-weight: normal;
+// $elmenu-global-font-size:   1rem;
+// $elmenu-global-line-height: 1em;
+// $elmenu-global-font-weight: $fw-semibold;
+
+$elmenu-global-font-size:   inherit;
+$elmenu-global-line-height: inherit;
+$elmenu-global-font-weight: inherit;
 
 // or set the individual values
 $elmenu-utility-font-size:   $elmenu-global-font-size;
@@ -70,40 +77,40 @@ $elmenu-mobile-main-line-height: $elmenu-global-line-height;
 $elmenu-mobile-main-font-weight: $elmenu-global-font-weight;
 
 // navutility
-$elmenu-navutility-background:                  $brand-color-1;
+$elmenu-navutility-background:                  $elmenu-color-1;
 $elmenu-navutility-link-padding:                1.25rem 1rem;
-$elmenu-navutility-link-color:                  $brand-color-3;
+$elmenu-navutility-link-color:                  $elmenu-color-3;
 $elmenu-navutility-link-hover-color:            white;
-$elmenu-navutility-link-background-color:       $brand-color-1;
-$elmenu-navutility-link-hover-background-color: $brand-color-1;
+$elmenu-navutility-link-background-color:       $elmenu-color-1;
+$elmenu-navutility-link-hover-background-color: $elmenu-color-1;
 $elmenu-navutility-link-text-transform:         none;
 
 // navmain
-$elmenu-navmain-background:                  $brand-color-2;
+$elmenu-navmain-background:                  $elmenu-color-2;
 $elmenu-navmain-link-padding:                1.25rem 1rem;
-$elmenu-navmain-link-color:                  white;
-$elmenu-navmain-link-hover-color:            white;
-$elmenu-navmain-link-background-color:       $brand-color-2;
-$elmenu-navmain-link-hover-background-color: $brand-color-2;
+$elmenu-navmain-link-color:                  $ava-brand-color-dark;
+$elmenu-navmain-link-hover-color:            $ava-brand-color;
+$elmenu-navmain-link-background-color:       $elmenu-color-2;
+$elmenu-navmain-link-hover-background-color: $elmenu-color-2;
 $elmenu-navmain-link-text-transform:         none;
 
 // navmain subs
-$elmenu-navmain-sub-background:       $brand-color-2;
-$elmenu-navmain-sub-hover-background: lighten($brand-color-2, 8%);
+$elmenu-navmain-sub-background:       $elmenu-color-2;
+$elmenu-navmain-sub-hover-background: lighten($elmenu-color-2, 8%);
 
-$elmenu-navmain-subsub-background:       lighten($brand-color-2, 8%);
-$elmenu-navmain-subsub-hover-background: lighten($brand-color-2, 16%);
+$elmenu-navmain-subsub-background:       lighten($elmenu-color-2, 8%);
+$elmenu-navmain-subsub-hover-background: lighten($elmenu-color-2, 16%);
 
 // mobile nav styles
 $elmenu-transition-property: all;
 $elmenu-transition-duration: .3s;
 $elmenu-transition-timing:   ease-out;
 
-$elmenu-toggle-holder-background-color:        $brand-color-1;
-$elmenu-mobile-toggle-holder-background-color: $brand-color-1;
+$elmenu-toggle-holder-background-color:        $elmenu-color-1;
+$elmenu-mobile-toggle-holder-background-color: $elmenu-color-1;
 $elmenu-toggle-button-padding:                 1rem;
 
-$elmenu-background-color: $brand-color-1;
+$elmenu-background-color: $elmenu-color-1;
 
 // This should always be 0, unless changing it for visual testing during dev
 $canvas-start-position: 0;
@@ -112,17 +119,81 @@ $elmenu-elmobile-width:   400px;
 $elmenu-links-padding:    1.25rem 1rem;
 $elmenu-sublinks-padding: 1.25rem 1rem 1.25rem 2rem;
 
-$elmenu-mobile-subnav-toggle-background-color: orange;
+$elmenu-mobile-subnav-toggle-background-color: $elmenu-highlight-color;
+
+
+
+
+
+
+
+
+
 
 
 /**
  * This .list-reset class is in my demo Sass partials,
  * but added here, so this partial can be 100% portable.
  */
+/*
 .list-reset {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+*/
+
+
+/**
+ * elmenu global font setting
+ */
+#elmenu,
+#elmobile, {}
+
+/**
+ * Page structure
+ * These are top-level classes, and should appear
+ * high in the cascade, to be safe. But since:
+ * 1. They don't appear anywhere else
+ * 2. IDs have very high specificity
+ * It's not an issue. Might be a point to revisit
+ * if there are any cascade debugging issues.
+ */
+#page {
+   position: relative; //necessary?
+   overflow: hidden;
+   width: 100%;
+}
+
+#canvas {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   -webkit-transform: translateX($canvas-start-position);
+   transform: translateX($canvas-start-position);
+   -webkit-transition: -webkit-transform .33s cubic-bezier(.694, .0482, .335, 1);
+   transition: -webkit-transform .33s cubic-bezier(.694, .0482, .335, 1);
+}
+
+#elmobile {
+   position: absolute;
+   top: 0;
+   right: (-1 * $elmenu-elmobile-width);
+   width: $elmenu-elmobile-width;
+   height: 100%;
+   background: $elmenu-background-color;
+}
+
+body.show-nav #canvas {
+   -webkit-transform: translateX( (-1 * $elmenu-elmobile-width) );
+   transform: translateX( (-1 * $elmenu-elmobile-width) );
+}
+
+body.show-nav #elmobile {
+   // Constrain the menu to the screen width on smaller screens
+   max-width: 100%;
+   // And add a left border
+   border-left: 1px solid white;
 }
 
 
@@ -171,46 +242,16 @@ $elmenu-mobile-subnav-toggle-background-color: orange;
 
 
 /**
- * Page structure
- */
-#page {
-   position: relative; //necessary?
-   overflow: hidden;
-   width: 100%;
-}
-
-#canvas {
-   position: relative;
-   width: 100%;
-   height: 100%;
-   -webkit-transform: translateX($canvas-start-position);
-   transform: translateX($canvas-start-position);
-   -webkit-transition: -webkit-transform .33s cubic-bezier(.694, .0482, .335, 1);
-   transition: -webkit-transform .33s cubic-bezier(.694, .0482, .335, 1);
-}
-
-#elmobile {
-   position: absolute;
-   top: 0;
-   right: (-1 * $elmenu-elmobile-width);
-   width: $elmenu-elmobile-width;
-   height: 100%;
-   background: $elmenu-background-color;
-}
-
-body.show-nav #elmobile {
-   // Constrain the menu to the screen width on smaller screens
-   max-width: 100%;
-   // And add a left border
-   border-left: 1px solid white;
-}
-
-
-/**
  * Some header container styles
  * They do not affect the menu system, they just allow us to
  * position & style those individual elements.
  */
+
+/*
+These two class settings have been moved to layout/header.scss
+to keep the header layout settings above (and separate from)
+all the individual elmenu styles.
+
 .navholder--utility {
    display: none;
    @media only screen and (min-width: $elmenu-mobile-breakpoint){
@@ -236,6 +277,8 @@ body.show-nav #elmobile {
    }
 
 }
+
+*/
 
 
 /*
@@ -339,10 +382,11 @@ SHOW THE MOBILE MENU (slide it in)
 Attach the .show-nav class to the body tag (with jQuery), so we have the option
 to manipulate more page elements when the menu is open.
 */
-body.show-nav #canvas {
-   -webkit-transform: translateX( (-1 * $elmenu-elmobile-width) );
-   transform: translateX( (-1 * $elmenu-elmobile-width) );
-}
+
+/*
+These two class settings have been moved to layout/header.scss
+to keep the header layout settings above (and separate from)
+all the individual elmenu styles.
 
 .elmtoggle__holder,
 .elmtoggle__holder--mobile {
@@ -381,6 +425,8 @@ body.show-nav #canvas {
    vertical-align: top;
 }
 
+*/
+
 
 /**
  * --------------------------------- The header (desktop view) menu styles
@@ -393,6 +439,13 @@ body.show-nav #canvas {
 }
 .elm__item {
    display: inline-block;
+
+   // Make the last link look like a button
+   &:last-of-type .elm__link {
+      //@extend .button--small;
+      margin-left: 1.5rem;
+   }
+
 }
 .elm__link {
    display: block;
@@ -520,12 +573,12 @@ body.show-nav #canvas {
 .m-elm__list {
    display: block;
    margin: 0;
-   //border-bottom: 1px solid white;
+   border-bottom: 1px solid white;
 }
 .m-elm__item {
    border-bottom: 1px solid white;
    &:last-of-type {
-      //border-bottom: none;
+      border-bottom: none;
    }
 }
 .m-elm__link {
@@ -663,40 +716,6 @@ body.show-nav #canvas {
    animation:spin 4s linear infinite;
 }
 
-/*
-.elmtrigger,
-.elmtrigger--sub {
-   cursor: pointer;
-   text-align: center;
-   margin: 0;
-   padding: 0;
-}
-
-// the SVG
-.elmtrigger img,
-.elmtrigger--sub img {
-   margin: 0 auto;
-   padding: 0;
-   display: inline-block;
-   vertical-align: middle;
-   width: auto;
-   height: .75rem;
-   -ms-transform: rotate(0deg);
-   -webkit-transform: rotate(0deg);
-   transform: rotate(0deg);
-}
-
-.elmtrigger img.rotate,
-.elmtrigger--sub img.rotate {
-   -ms-transform: rotate(180deg);
-   -webkit-transform: rotate(180deg);
-   transform: rotate(180deg);
-   -webkit-animation:spin 4s linear infinite;
-   -moz-animation:spin 4s linear infinite;
-   animation:spin 4s linear infinite;
-}
-*/
-
 // ----------- Some specific styles to handle mobile links with subs
 
 /*
@@ -706,57 +725,67 @@ This creates the appearance of a unique BG color on the span (the sub-nav toggle
 
 // BG on the level 1 li (carries into the span)
 .m-elm__item.hassub {
-   background-color: $highlight-color;
+   background-color: $elmenu-highlight-color;
 }
 // Then 'reset' the link's BG color. The span still has the BG color of the li
-.m-elm__item.hassub a {background-color: $brand-color-1;
+.m-elm__item.hassub a {
+   background-color: $elmenu-color-1;
 }
 
-// BG on the level 2 li (carries into the span)
+// BG on the level 1 li (carries into the span)
 .m-elm__item--sub.hassubsub {
-   background-color: $highlight-color;
+   background-color: $elmenu-highlight-color;
 }
 // Then 'reset' the link's BG color. The span still has the BG color of the li
 .m-elm__item--sub.hassubsub a,
 .m-elm__link--sub {
-   background-color: lighten($brand-color-1, 10%);
+   background-color: lighten($elmenu-color-1, 10%);
 }
 
 .m-elm__item--subsub,
 .m-elm__link--subsub {
-   background-color: lighten($brand-color-1, 20%);
+   background-color: lighten($elmenu-color-1, 20%);
 }
 
-.hassub > .m-elm__link,
-.hassubsub > .m-elm__link--sub {// excludes the span
+.hassub .m-elm__link,
+.hassub .m-elm__link--sub,
+.hassub .m-elm__link--subsub {// excludes the span
    border-right: 1px solid white !important;
 }
 
 // fit the links and triggers on one line and space them
+/*
+.hassub .m-elm__link,
+.elmtrigger,
+.m-elm__item--sub.hassub .m-elm__link--sub,
+.elmtrigger--sub {
+   display: inline-block;
+}
+*/
+// This covers both parent and --sub
+.hassub .m-elm__link,
+.m-elm__item--sub.hassub .m-elm__link--sub,
+[class^="elmtrigger"] {
+   display: inline-block;
+}
+
 .hassub .m-elm__link,
 .hassubsub .m-elm__link--sub {
    display: inline-block;
-   width: 84%;
+   width: 80%;
 }
 
-[class^="elmtrigger"] {
+/*
+.elmtrigger,
+.elmtrigger--sub {
    display: inline-block;
-   width: 16%;
+   width: 20%;
    text-align: center;
 }
-
-/**
- * The extra 1px bottom space (usually a result of inline elements)
- * seems to be an issue in Chrome only. The negative margin removes it.
- */
-/*
-li.hassub > a,
-li.hassub > span {
-   -webkit-margin-bottom: -1px;
-}
-
-li.hassubsub > a,
-li.hassubsub > span {
-   -webkit-margin-bottom: -1px;
-}
 */
+// This covers both parent and --sub
+[class^="elmtrigger"] {
+   display: inline-block;
+   width: 20%;
+   text-align: center;
+}

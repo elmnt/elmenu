@@ -1,0 +1,906 @@
+/**
+ * @elmnt
+ */
+/**
+ * None of these are necessary for the elmenu.
+ * It's just some basic stuff for my demo page.
+ */
+/**
+ * HTML5 Reset
+ */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+/* ol, ul { list-style: none; } I prefer a utility class for this. Leave the defaults alone. */
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/**
+ * Variables
+ */
+/* 
+Some colors from "Smarter defaults for colors on the web,"
+just for the demo at: http://simplr.elmnt.com
+Credit: Adam Morse (mrmrs): https://github.com/mrmrs/colors
+*/
+/**
+ * Mixins
+ */
+/**
+ * Base
+ */
+html {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+html,
+body {
+  width: 100%;
+  height: 100%; }
+
+html {
+  font-size: 18px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 100%;
+  line-height: 1.5em;
+  font-weight: normal;
+  font-weight: 400; }
+
+a,
+a img,
+input,
+textarea,
+button {
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out; }
+
+/**
+ * Type
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.025em;
+  line-height: 1.35em;
+  margin: 0 0 2rem 0; }
+
+h1 {
+  font-size: 40px;
+  font-size: 2.5rem; }
+
+h2 {
+  font-size: 32px;
+  font-size: 2rem; }
+
+h3 {
+  font-size: 24px;
+  font-size: 1.75rem; }
+
+h4 {
+  font-size: 16px;
+  font-size: 1.5rem; }
+
+h5 {
+  font-size: 16px;
+  font-size: 1.25rem; }
+
+h6 {
+  font-size: 16px;
+  font-size: 1rem; }
+
+h5,
+h6 {
+  text-transform: uppercase; }
+
+ol,
+ul {
+  margin-left: 1.5rem; }
+
+p {
+  margin-bottom: 2rem; }
+
+p,
+li,
+td {
+  font-size: 1rem;
+  line-height: 1.5em; }
+
+a {
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  color: red; }
+  a:visited {
+    color: red; }
+  a:hover, a:active, a:focus {
+    color: orange;
+    text-decoration: none; }
+
+/**
+ * Grid
+ */
+.cf:before, .container:before, .wrap:before, .wrap--single:before, .grid:before,
+.cf:after,
+.container:after,
+.wrap:after,
+.wrap--single:after,
+.grid:after {
+  content: " ";
+  display: table; }
+
+.cf:after, .container:after, .wrap:after, .wrap--single:after, .grid:after {
+  clear: both; }
+
+.container {
+  margin: 4rem auto;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  background-color: white; }
+
+.wrap, .wrap--single {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  min-width: 100px;
+  text-align: left; }
+
+.wrap--single {
+  max-width: 800px;
+  padding: 1rem 0; }
+
+/*
+(slightly modified) joshnh grid
+credit: http://joshnh.com/weblog/creating-lightweight-grid-system/
+*/
+.grid {
+  width: 100%; }
+
+[class*="grid__col--"] {
+  vertical-align: top;
+  border-collapse: collapse !important; }
+
+.content {
+  padding: 1rem 0; }
+
+@media (min-width: 800px) {
+  [class*="grid__col--"] {
+    display: inline-block; }
+  .grid__col--20 {
+    width: 20%; }
+  .grid__col--25 {
+    width: 25%; }
+  .grid__col--30 {
+    width: 30%; }
+  .grid__col--33 {
+    width: 33%; }
+  .grid__col--40 {
+    width: 40%; }
+  .grid__col--50 {
+    width: 50%; }
+  .grid__col--60 {
+    width: 60%; }
+  .grid__col--67 {
+    width: 67%; }
+  .grid__col--70 {
+    width: 70%; }
+  .grid__col--75 {
+    width: 75%; }
+  .grid__col--80 {
+    width: 80%; }
+  .grid__col--100 {
+    width: 100%; }
+  .grid__col--333 {
+    width: 33.333333333%; }
+  .content {
+    padding: 1rem; }
+  /*
+  Remove left padding from the first .column module,
+  and right padding from the last .column module,
+  so our content stays flush with the .wrap module.
+  */
+  .grid [class*="grid__col--"]:first-of-type > .content {
+    padding-left: 0; }
+  .grid [class*="grid__col--"]:last-of-type > .content {
+    padding-right: 0; } }
+
+/**
+ * Utilities
+ */
+.align--left {
+  text-align: left; }
+
+.align--right {
+  text-align: right; }
+
+.align--center {
+  text-align: center; }
+
+.list-reset, .elm__list, .elm__list--sub, .elm__list--subsub {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+/**
+ * This is the only partial you need, to use elmenu in your project.
+ * All variables are contained.
+ */
+/**
+ *
+ * elmenu | A lightweight jQuery menu system
+ *
+ */
+/*
+This was built upon a really great tutorial by Nicholas Cerminara on scotch.io
+
+Credit
+https://scotch.io/tutorials/off-canvas-menus-with-css3-transitions-and-transforms
+
+I built upon it to add:
+
+1. Desktop display of a fairly robust header nav with different link sections and sub-menus
+2. Automatic injection of all those nav (and sub-nav) elements into a mobile nav holder
+3. Accordion-style drop-down in the mobile nav, with the option to click both the parent link
+   (to go to a category page, for instance), and a toggle button to activate that sub-menu (to access the sub-menu links).
+*/
+/**
+ * Variables:
+ * Leave these in place, to keep this partial 100% portable,
+ * or dump them into your global variables to make this part of your framework
+ */
+/**
+ * This .list-reset class is in my demo Sass partials,
+ * but added here, so this partial can be 100% portable.
+ */
+.list-reset, .elm__list, .elm__list--sub, .elm__list--subsub {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+/**
+ * Font sizes for both desktop & mobile menus
+ */
+.nav--utility .elm__item {
+  font-size: 0.85rem;
+  line-height: 1em;
+  font-weight: normal; }
+
+.nav--utility .m-elm__item {
+  font-size: 0.85rem;
+  line-height: 1em;
+  font-weight: normal; }
+
+.nav--social .elm__item {
+  font-size: 0.85rem;
+  line-height: 1em;
+  font-weight: normal; }
+
+.nav--social .m-elm__item {
+  font-size: 0.85rem;
+  line-height: 1em;
+  font-weight: normal; }
+
+.nav--main .elm__item,
+.nav--main .elm__item--sub,
+.nav--main .elm__item--subsub {
+  font-size: 0.85rem;
+  line-height: 1em;
+  font-weight: normal; }
+
+.nav--main .m-elm__item,
+.nav--main .m-elm__item--sub,
+.nav--main .m-elm__item--subsub {
+  font-size: 0.85rem;
+  line-height: 1em;
+  font-weight: normal; }
+
+/**
+ * Page structure
+ */
+#page {
+  position: relative;
+  overflow: hidden;
+  width: 100%; }
+
+#canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: -webkit-transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: -webkit-transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1); }
+
+#elmobile {
+  position: absolute;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: #333; }
+
+body.show-nav #elmobile {
+  max-width: 100%;
+  border-left: 1px solid white; }
+
+/**
+ * Some header container styles
+ * They do not affect the menu system, they just allow us to
+ * position & style those individual elements.
+ */
+.navholder--utility {
+  display: none; }
+  @media only screen and (min-width: 768px) {
+    .navholder--utility {
+      display: block;
+      background-color: #333; }
+      .navholder--utility nav {
+        float: left;
+        display: inline-block; }
+      .navholder--utility .nav--social {
+        float: right;
+        display: inline-block; } }
+
+.navholder--main {
+  display: none; }
+  @media only screen and (min-width: 768px) {
+    .navholder--main {
+      display: block;
+      background-color: #666; } }
+
+/*
+Colors unique to each individual nav element (the ULs)
+Applied for both desktop and mobile
+*/
+.nav--utility .elm__link {
+  text-transform: none;
+  color: #999; }
+  .nav--utility .elm__link:visited {
+    color: #999; }
+  .nav--utility .elm__link:hover, .nav--utility .elm__link:active, .nav--utility .elm__link:focus {
+    color: white; }
+
+.nav--social .elm__link {
+  text-transform: none;
+  color: #999; }
+  .nav--social .elm__link:visited {
+    color: #999; }
+  .nav--social .elm__link:hover, .nav--social .elm__link:active, .nav--social .elm__link:focus {
+    color: white; }
+
+.nav--main .elm__link {
+  color: white; }
+  .nav--main .elm__link:visited {
+    color: white; }
+  .nav--main .elm__link:hover, .nav--main .elm__link:active, .nav--main .elm__link:focus {
+    color: white; }
+
+.nav--main .elm__link--sub {
+  color: white;
+  background-color: #666; }
+  .nav--main .elm__link--sub:visited {
+    color: white;
+    background-color: #666; }
+  .nav--main .elm__link--sub:hover, .nav--main .elm__link--sub:active, .nav--main .elm__link--sub:focus {
+    color: white;
+    background-color: #7a7a7a; }
+
+.nav--main .elm__link--subsub {
+  min-width: 200px;
+  color: white;
+  background-color: #7a7a7a; }
+  .nav--main .elm__link--subsub:visited {
+    color: white;
+    background-color: #7a7a7a; }
+  .nav--main .elm__link--subsub:hover, .nav--main .elm__link--subsub:active, .nav--main .elm__link--subsub:focus {
+    color: white;
+    background-color: #8f8f8f; }
+
+.nav--main .elm__item--sub:hover > a {
+  background-color: #7a7a7a; }
+
+/*
+SHOW THE MOBILE MENU (slide it in)
+Attach the .show-nav class to the body tag (with jQuery), so we have the option
+to manipulate more page elements when the menu is open.
+*/
+body.show-nav #canvas {
+  -webkit-transform: translateX(-400px);
+  transform: translateX(-400px); }
+
+.elmtoggle__holder,
+.elmtoggle__holder--mobile {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 1rem 1rem .75rem 1rem;
+  border-bottom: 1px solid white; }
+
+.elmtoggle__holder {
+  background-color: #333; }
+
+.elmtoggle__holder--mobile {
+  background-color: #333; }
+
+@media only screen and (min-width: 768px) {
+  .elmtoggle__holder {
+    display: none; } }
+
+.elmtoggle__holder a {
+  text-decoration: none; }
+
+.elmtoggle__icon {
+  width: auto;
+  height: 1.5rem;
+  display: inline-block;
+  vertical-align: top; }
+
+/**
+ * --------------------------------- The header (desktop view) menu styles
+ */
+.elm__item {
+  display: inline-block; }
+
+.elm__link {
+  display: block;
+  padding: 1.25rem 1rem;
+  text-decoration: none; }
+
+.elm__link--sub {
+  display: block;
+  padding: 1.25rem 1rem;
+  text-decoration: none; }
+
+.elm__list--sub {
+  display: none;
+  text-align: left; }
+
+.elm__item.hassub:hover .elm__list--sub {
+  display: block; }
+
+.elm__item.hassub {
+  position: relative; }
+
+.elm__item.hassub .elm__list--sub {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: auto; }
+
+.elm__item--sub {
+  width: 100%; }
+
+.elm__link--sub {
+  display: block;
+  padding: 1.25rem 1rem;
+  white-space: nowrap; }
+
+.elm__link--subsub {
+  display: block;
+  padding: 1.25rem 1rem;
+  text-decoration: none; }
+
+.elm__list--subsub {
+  display: none;
+  text-align: left; }
+
+.elm__item--sub.hassubsub:hover .elm__list--subsub {
+  display: block; }
+
+.elm__item--sub.hassubsub {
+  position: relative; }
+
+.elm__item--sub.hassubsub .elm__list--subsub {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: auto; }
+
+.elm__item--subsub {
+  width: 100%; }
+
+.elm__link--subsub {
+  display: block;
+  padding: 1.25rem 1rem;
+  white-space: nowrap; }
+
+/**
+ * --------------------------------- The mobile menu styles
+ */
+.m-elm__list,
+.m-elm__list--sub,
+.m-elm__list--subsub {
+  list-style: none;
+  text-align: left;
+  padding-left: 0; }
+
+.m-elm__link,
+.m-elm__link--sub,
+.m-elm__link--subsub {
+  color: white; }
+  .m-elm__link:visited,
+  .m-elm__link--sub:visited,
+  .m-elm__link--subsub:visited {
+    color: white; }
+  .m-elm__link:hover, .m-elm__link:active, .m-elm__link:focus,
+  .m-elm__link--sub:hover,
+  .m-elm__link--sub:active,
+  .m-elm__link--sub:focus,
+  .m-elm__link--subsub:hover,
+  .m-elm__link--subsub:active,
+  .m-elm__link--subsub:focus {
+    color: white; }
+
+.m-elm__list {
+  display: block;
+  margin: 0; }
+
+.m-elm__item {
+  border-bottom: 1px solid white; }
+
+.m-elm__link {
+  display: block;
+  padding: .85rem 1rem;
+  text-decoration: none; }
+
+.m-elm__list--sub {
+  display: none;
+  margin: 0; }
+
+.m-elm__item--sub {
+  border-bottom: 1px solid white; }
+  .m-elm__item--sub:first-of-type {
+    border-top: 1px solid white; }
+  .m-elm__item--sub:last-of-type {
+    border-bottom: none; }
+
+.m-elm__link--sub {
+  display: block;
+  padding: .85rem 1rem;
+  text-decoration: none;
+  border-left: 10px solid orange; }
+
+.m-elm__list--subsub {
+  display: none;
+  margin: 0; }
+
+.m-elm__item--subsub {
+  border-bottom: 1px solid white; }
+  .m-elm__item--subsub:first-of-type {
+    border-top: 1px solid white; }
+  .m-elm__item--subsub:last-of-type {
+    border-bottom: none; }
+
+.m-elm__link--subsub {
+  display: block;
+  padding: .85rem 1rem;
+  text-decoration: none;
+  border-left: 20px solid orange; }
+
+/**
+ * Changing the elmtrigger class to reflect the updates to elmenu.js
+ * We're dynamically creating a new node for each toggle element,
+ * so they'll have unique classes. Otherwise, when clicking on ANY of them,
+ * they will ALL spin (because they had the same dynamically generated node + class).
+ * For instance: If there are TWO parent menu items with children, the toggle nodes are:
+ * <span class="elmtrigger-1"><img src="/wp-content/themes/ava/img/arrow-down.svg" alt="Open Sub Menu"></span>
+ * <span class="elmtrigger-2"><img src="/wp-content/themes/ava/img/arrow-down.svg" alt="Open Sub Menu"></span>
+ * ...and so on, for more nodes
+ *
+ * So all instances of 'elmntrigger' below must be changed to [class^="elmtrigger"]
+ *
+ */
+/*
+.elmtrigger,
+.elmtrigger--sub {
+   cursor: pointer;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+}
+*/
+[class^="elmtrigger"] {
+  cursor: pointer;
+  text-align: center;
+  margin: 0;
+  padding: 0; }
+
+/*
+.elmtrigger img,
+.elmtrigger--sub img {
+   margin: 0 auto;
+   padding: 0;
+   display: inline-block;
+   vertical-align: middle;
+   width: auto;
+   height: .75rem;
+   -ms-transform: rotate(0deg);
+   -webkit-transform: rotate(0deg);
+   transform: rotate(0deg);
+}
+*/
+[class^="elmtrigger"] img {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  height: .75rem;
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg); }
+
+/*
+.elmtrigger img.rotate,
+.elmtrigger--sub img.rotate {
+   -ms-transform: rotate(180deg);
+   -webkit-transform: rotate(180deg);
+   transform: rotate(180deg);
+   -webkit-animation:spin 4s linear infinite;
+   -moz-animation:spin 4s linear infinite;
+   animation:spin 4s linear infinite;
+}
+*/
+[class^="elmtrigger"] img.rotate {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite; }
+
+/*
+.elmtrigger,
+.elmtrigger--sub {
+   cursor: pointer;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+}
+
+// the SVG
+.elmtrigger img,
+.elmtrigger--sub img {
+   margin: 0 auto;
+   padding: 0;
+   display: inline-block;
+   vertical-align: middle;
+   width: auto;
+   height: .75rem;
+   -ms-transform: rotate(0deg);
+   -webkit-transform: rotate(0deg);
+   transform: rotate(0deg);
+}
+
+.elmtrigger img.rotate,
+.elmtrigger--sub img.rotate {
+   -ms-transform: rotate(180deg);
+   -webkit-transform: rotate(180deg);
+   transform: rotate(180deg);
+   -webkit-animation:spin 4s linear infinite;
+   -moz-animation:spin 4s linear infinite;
+   animation:spin 4s linear infinite;
+}
+*/
+/*
+Put a background color on the LI that has a sub-nav toggle.
+This creates the appearance of a unique BG color on the span (the sub-nav toggle trigger)
+*/
+.m-elm__item.hassub {
+  background-color: orange; }
+
+.m-elm__item.hassub a {
+  background-color: #333; }
+
+.m-elm__item--sub.hassubsub {
+  background-color: orange; }
+
+.m-elm__item--sub.hassubsub a,
+.m-elm__link--sub {
+  background-color: #4d4d4d; }
+
+.m-elm__item--subsub,
+.m-elm__link--subsub {
+  background-color: #666666; }
+
+.hassub > .m-elm__link,
+.hassubsub > .m-elm__link--sub {
+  border-right: 1px solid white !important; }
+
+.hassub .m-elm__link,
+.hassubsub .m-elm__link--sub {
+  display: inline-block;
+  width: 84%; }
+
+[class^="elmtrigger"] {
+  display: inline-block;
+  width: 16%;
+  text-align: center; }
+
+/**
+ * The extra 1px bottom space (usually a result of inline elements)
+ * seems to be an issue in Chrome only. The negative margin removes it.
+ */
+/*
+li.hassub > a,
+li.hassub > span {
+   -webkit-margin-bottom: -1px;
+}
+
+li.hassubsub > a,
+li.hassubsub > span {
+   -webkit-margin-bottom: -1px;
+}
+*/
+/**
+ * Style for the prism.js plugin
+ */
+/* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: black;
+  background: none;
+  text-shadow: 0 1px white;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none; }
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  text-shadow: none;
+  background: #b3d4fc; }
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  text-shadow: none;
+  background: #b3d4fc; }
+
+@media print {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    text-shadow: none; } }
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto; }
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #f5f2f0; }
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal; }
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: slategray; }
+
+.token.punctuation {
+  color: #999; }
+
+.namespace {
+  opacity: .7; }
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #905; }
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #690; }
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #a67f59;
+  background: rgba(255, 255, 255, 0.5); }
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #07a; }
+
+.token.function {
+  color: #DD4A68; }
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #e90; }
+
+.token.important,
+.token.bold {
+  font-weight: bold; }
+
+.token.italic {
+  font-style: italic; }
+
+.token.entity {
+  cursor: help; }
