@@ -1,3 +1,5 @@
+This was one of my favorite jQuery projects, but it's old now, and hasn't been touched in years. 
+
 # elmenu  
 
 A lightweight, responsive jQuery menu system  
